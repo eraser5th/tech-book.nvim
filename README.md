@@ -47,5 +47,5 @@ git clone https://github.com/eraser5th/tech-book.nvim ~/.config/nvim
 これで準備は万端です！では `Neovim` を起動しましょう！
 
 ```shell
-nvim
+nvim +PackerSync
 ```
