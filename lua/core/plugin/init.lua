@@ -3,7 +3,14 @@ local util = require("util")
 
 local M = {}
 
+local init_packer = function ()
+  packer.init({
+    clone_timeout = 500, -- Timeout, in seconds, for git clones
+  })
+end
+
 M.setup = function(packer_bootstrap)
+  init_packer()
   return packer.startup(function(use)
     use("wbthomason/packer.nvim")
 
