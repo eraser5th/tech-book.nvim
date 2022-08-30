@@ -2,137 +2,216 @@ local M = {}
 
 local setup_options = function ()
   return {
-    default_remote = { "upstream", "origin" };
-    ssh_aliases = {},
-    reaction_viewer_hint_icon = "";
-    user_icon = " ";
-    timeline_marker = "";
-    timeline_indent = "2";
-    right_bubble_delimiter = "";
-    left_bubble_delimiter = "";
-    github_hostname = "";
-    snippet_context_lines = 4;
-    file_panel = {
-      size = 10,
-      use_icons = true
+    mappings = {}
+  }
+end
+
+local issue_mappings = function ()
+  return {
+    name = "+issue",
+    l = {
+      function () require("octo.commands").commands.issue.list() end,
+      "List all issues",
     },
-    mappings = {
-      issue = {
-        close_issue = { lhs = "<space>ic", desc = "close issue" },
-        reopen_issue = { lhs = "<space>io", desc = "reopen issue" },
-        list_issues = { lhs = "<space>il", desc = "list open issues on same repo" },
-        reload = { lhs = "<C-r>", desc = "reload issue" },
-        open_in_browser = { lhs = "<C-b>", desc = "open issue in browser" },
-        copy_url = { lhs = "<C-y>", desc = "copy url to system clipboard" },
-        add_assignee = { lhs = "<space>aa", desc = "add assignee" },
-        remove_assignee = { lhs = "<space>ad", desc = "remove assignee" },
-        create_label = { lhs = "<space>lc", desc = "create label" },
-        add_label = { lhs = "<space>la", desc = "add label" },
-        remove_label = { lhs = "<space>ld", desc = "remove label" },
-        goto_issue = { lhs = "<space>gi", desc = "navigate to a local repo issue" },
-        add_comment = { lhs = "<space>ca", desc = "add comment" },
-        delete_comment = { lhs = "<space>cd", desc = "delete comment" },
-        next_comment = { lhs = "]c", desc = "go to next comment" },
-        prev_comment = { lhs = "[c", desc = "go to previous comment" },
-        react_hooray = { lhs = "<space>rp", desc = "add/remove 🎉 reaction" },
-        react_heart = { lhs = "<space>rh", desc = "add/remove ❤️ reaction" },
-        react_eyes = { lhs = "<space>re", desc = "add/remove 👀 reaction" },
-        react_thumbs_up = { lhs = "<space>r+", desc = "add/remove 👍 reaction" },
-        react_thumbs_down = { lhs = "<space>r-", desc = "add/remove 👎 reaction" },
-        react_rocket = { lhs = "<space>rr", desc = "add/remove 🚀 reaction" },
-        react_laugh = { lhs = "<space>rl", desc = "add/remove 😄 reaction" },
-        react_confused = { lhs = "<space>rc", desc = "add/remove 😕 reaction" },
-      },
-      pull_request = {
-        checkout_pr = { lhs = "<space>po", desc = "checkout PR" },
-        merge_pr = { lhs = "<space>pm", desc = "merge commit PR" },
-        squash_and_merge_pr = { lhs = "<space>psm", desc = "squash and merge PR" },
-        list_commits = { lhs = "<space>pc", desc = "list PR commits" },
-        list_changed_files = { lhs = "<space>pf", desc = "list PR changed files" },
-        show_pr_diff = { lhs = "<space>pd", desc = "show PR diff" },
-        add_reviewer = { lhs = "<space>va", desc = "add reviewer" },
-        remove_reviewer = { lhs = "<space>vd", desc = "remove reviewer request" },
-        close_issue = { lhs = "<space>ic", desc = "close PR" },
-        reopen_issue = { lhs = "<space>io", desc = "reopen PR" },
-        list_issues = { lhs = "<space>il", desc = "list open issues on same repo" },
-        reload = { lhs = "<C-r>", desc = "reload PR" },
-        open_in_browser = { lhs = "<C-b>", desc = "open PR in browser" },
-        copy_url = { lhs = "<C-y>", desc = "copy url to system clipboard" },
-        goto_file = { lhs = "gf", desc = "go to file" },
-        add_assignee = { lhs = "<space>aa", desc = "add assignee" },
-        remove_assignee = { lhs = "<space>ad", desc = "remove assignee" },
-        create_label = { lhs = "<space>lc", desc = "create label" },
-        add_label = { lhs = "<space>la", desc = "add label" },
-        remove_label = { lhs = "<space>ld", desc = "remove label" },
-        goto_issue = { lhs = "<space>gi", desc = "navigate to a local repo issue" },
-        add_comment = { lhs = "<space>ca", desc = "add comment" },
-        delete_comment = { lhs = "<space>cd", desc = "delete comment" },
-        next_comment = { lhs = "]c", desc = "go to next comment" },
-        prev_comment = { lhs = "[c", desc = "go to previous comment" },
-        react_hooray = { lhs = "<space>rp", desc = "add/remove 🎉 reaction" },
-        react_heart = { lhs = "<space>rh", desc = "add/remove ❤️ reaction" },
-        react_eyes = { lhs = "<space>re", desc = "add/remove 👀 reaction" },
-        react_thumbs_up = { lhs = "<space>r+", desc = "add/remove 👍 reaction" },
-        react_thumbs_down = { lhs = "<space>r-", desc = "add/remove 👎 reaction" },
-        react_rocket = { lhs = "<space>rr", desc = "add/remove 🚀 reaction" },
-        react_laugh = { lhs = "<space>rl", desc = "add/remove 😄 reaction" },
-        react_confused = { lhs = "<space>rc", desc = "add/remove 😕 reaction" },
-      },
-      review_thread = {
-        goto_issue = { lhs = "<space>gi", desc = "navigate to a local repo issue" },
-        add_comment = { lhs = "<space>ca", desc = "add comment" },
-        add_suggestion = { lhs = "<space>sa", desc = "add suggestion" },
-        delete_comment = { lhs = "<space>cd", desc = "delete comment" },
-        next_comment = { lhs = "]c", desc = "go to next comment" },
-        prev_comment = { lhs = "[c", desc = "go to previous comment" },
-        select_next_entry = { lhs = "]q", desc = "move to previous changed file" },
-        select_prev_entry = { lhs = "[q", desc = "move to next changed file" },
-        close_review_tab = { lhs = "<C-c>", desc = "close review tab" },
-        react_hooray = { lhs = "<space>rp", desc = "add/remove 🎉 reaction" },
-        react_heart = { lhs = "<space>rh", desc = "add/remove ❤️ reaction" },
-        react_eyes = { lhs = "<space>re", desc = "add/remove 👀 reaction" },
-        react_thumbs_up = { lhs = "<space>r+", desc = "add/remove 👍 reaction" },
-        react_thumbs_down = { lhs = "<space>r-", desc = "add/remove 👎 reaction" },
-        react_rocket = { lhs = "<space>rr", desc = "add/remove 🚀 reaction" },
-        react_laugh = { lhs = "<space>rl", desc = "add/remove 😄 reaction" },
-        react_confused = { lhs = "<space>rc", desc = "add/remove 😕 reaction" },
-      },
-      submit_win = {
-        approve_review = { lhs = "<C-a>", desc = "approve review" },
-        comment_review = { lhs = "<C-m>", desc = "comment review" },
-        request_changes = { lhs = "<C-r>", desc = "request changes review" },
-        close_review_tab = { lhs = "<C-c>", desc = "close review tab" },
-      },
-      review_diff = {
-        add_review_comment = { lhs = "<space>ca", desc = "add a new review comment" },
-        add_review_suggestion = { lhs = "<space>sa", desc = "add a new review suggestion" },
-        focus_files = { lhs = "<leader>e", desc = "move focus to changed file panel" },
-        toggle_files = { lhs = "<leader>b", desc = "hide/show changed files panel" },
-        next_thread = { lhs = "]t", desc = "move to next thread" },
-        prev_thread = { lhs = "[t", desc = "move to previous thread" },
-        select_next_entry = { lhs = "]q", desc = "move to previous changed file" },
-        select_prev_entry = { lhs = "[q", desc = "move to next changed file" },
-        close_review_tab = { lhs = "<C-c>", desc = "close review tab" },
-        toggle_viewed = { lhs = "<leader><space>", desc = "toggle viewer viewed state" },
-      },
-      file_panel = {
-        next_entry = { lhs = "j", desc = "move to next changed file" },
-        prev_entry = { lhs = "k", desc = "move to previous changed file" },
-        select_entry = { lhs = "<cr>", desc = "show selected changed file diffs" },
-        refresh_files = { lhs = "R", desc = "refresh changed files panel" },
-        focus_files = { lhs = "<leader>e", desc = "move focus to changed file panel" },
-        toggle_files = { lhs = "<leader>b", desc = "hide/show changed files panel" },
-        select_next_entry = { lhs = "]q", desc = "move to previous changed file" },
-        select_prev_entry = { lhs = "[q", desc = "move to next changed file" },
-        close_review_tab = { lhs = "<C-c>", desc = "close review tab" },
-        toggle_viewed = { lhs = "<leader><space>", desc = "toggle viewer viewed state" },
-      }
+    c = {
+      function () require("octo.commands").commands.issue.close() end,
+      "Close current issue",
+    },
+    o = {
+      function () require("octo.commands").commands.issue.reopen() end,
+      "Reopen the current issue",
+    },
+    b = {
+      function () require("octo.commands").commands.issue.browser() end,
+      "Open current issue in the browser",
+    },
+    n = {
+      function () require("octo.commands").commands.issue.create() end,
+      "Creates a new issue in the current repo",
+    },
+    d = {
+      function () require("octo.picker").commands.changed_files() end,
+      "List changed files",
+    },
+  }
+end
+
+local pr_mappings = function ()
+  local commands = require("octo.commands").commands
+
+  return {
+    name = "+pull request",
+    l = {
+      function () commands.pr.list() end,
+      "List all PRs satisfying given filter",
+    },
+    o = {
+      function () commands.pr.reopen() end,
+      "Reopen the current PR",
+    },
+    c = {
+      function () commands.pr.close() end,
+      "Close the current PR",
+    },
+    n = {
+      function () commands.pr.create() end,
+      "Create a new PR for the current branch",
+    },
+    h = {
+      function () commands.pr.commits() end,
+      "List all PR commits",
+    },
+    d = {
+      function () commands.pr.diff() end,
+      "Show PR diff",
+    },
+    b = {
+      function () commands.pr.browser() end,
+      "Open current PR in the browser",
     }
   }
 end
 
+local reaction_mappings = function ()
+  local commands = require("octo.commands").commands
+
+  return {
+    name = "+reaction",
+    ["+"] = {
+      function() commands.reaction.thumbs_up() end,
+      "Reaction 👍",
+    },
+    ["-"] = {
+      function () commands.reaction.thumbs_down() end,
+      "Reaction 👎",
+    },
+    e = {
+      function () commands.reaction.eyes() end,
+      "Reaction 👀",
+    },
+    l = {
+      function () commands.reaction.laugh() end,
+      "Reaction 😄",
+    },
+    c = {
+      function () commands.reaction.confused() end,
+      "Reaction 😕",
+    },
+    t = {
+      function () commands.reaction.tada() end,
+      "Reaction 🎉",
+    },
+    r = {
+      function () commands.reaction.rocket() end,
+      "Reaction 🚀",
+    },
+  }
+end
+
+local review_mappings = function ()
+  local commands = require("octo.commands").commands
+  return {
+    name = "+review",
+    n = {
+      function () commands.review.start() end,
+      "Start review"
+    },
+    r = {
+      function () commands.review.resume() end,
+      "Resume"
+    },
+    c = {
+      function () commands.review.comments() end,
+      "Show comments"
+    },
+    s = {
+      function () commands.review.submit() end,
+      "Submit"
+    },
+    d = {
+      function () commands.review.discard() end,
+      "Discard"
+    },
+    C = {
+      function () commands.review.close() end,
+      "Close review"
+    },
+  }
+end
+
+local register_whichkey = function ()
+  local which_key = require("which-key")
+  local commands = require("octo.commands").commands
+
+  local opts = { prefix = "<Leader>" }
+  local mappings= {
+    o = {
+      name = "+Octo(GitHub Client)",
+      a = {
+        function () commands.actions() end,
+        "List all actions",
+      },
+      i = issue_mappings(),
+      p = pr_mappings(),
+      ["<C-r>"] = reaction_mappings(),
+      r = review_mappings(),
+      c = {
+        name = "+comment",
+        a = {
+          function () commands.comment.add() end,
+          "Add comment"
+        },
+        d = {
+          function () commands.comment.delete() end,
+          "Delete comment"
+        }
+      },
+      A = {
+        name = "+assignee",
+        a = {
+          function () commands.assignee.add() end,
+          "Add assignee",
+        },
+        r = {
+          function () commands.assignee.remove() end,
+          "Remove assignee",
+        },
+      },
+      R = {
+        name = "+reviewer",
+        a = {
+          function () commands.reviewer.add() end,
+          "Add reviewer",
+        },
+        r = {
+          function () commands.reviewer.remove() end,
+          "Remove reviewer",
+        },
+      },
+      L = {
+        name = "+label",
+        n = {
+          function () commands.label.create() end,
+          "Create label",
+        },
+        a = {
+          function () commands.label.add() end,
+          "Add label",
+        },
+        r = {
+          function () commands.label.remove() end,
+          "Remove label",
+        },
+      }
+    }
+  }
+
+  which_key.register(mappings, opts)
+end
+
 M.setup = function ()
-  require"octo".setup(setup_options())
+  require("octo").setup(setup_options())
+  register_whichkey()
 end
 
 return M
