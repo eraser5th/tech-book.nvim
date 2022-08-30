@@ -28,7 +28,7 @@ local mappings = {
 
     -- tab
     ["<Leader>tn"] = { ":tabnew<CR>", { desc = "Create new tab" } },
-    ["<Leader>th"] = { ":echo 'hello'<CR>", { desc = "Move to next tab" } },
+    ["<Leader>th"] = { ":tabnext<CR>", { desc = "Move to next tab" } },
     ["<Leader>tl"] = { ":tabNext<CR>", { desc = "Move to previows tab" } },
 
     -- terminal
