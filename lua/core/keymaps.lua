@@ -1,4 +1,3 @@
-local Table = require("module.Table")
 local util = require("util")
 
 local M = {}
@@ -16,24 +15,24 @@ local mappings = {
 
   normal = {
     -- write and quit
-    ["<Leader>w<CR>"] = { ":w<CR>" },
-    ["<Leader>q<CR>"] = { ":q<CR>" },
+    ["<Leader>w<CR>"] = { ":w<CR>", { desc = "Save file" } },
+    ["<Leader>q<CR>"] = { ":q<CR>", { desc = "Quit" } },
 
     -- window
-    ["<Leader>wh"] = { "<C-w>h" }, -- move to left window
-    ["<Leader>wj"] = { "<C-w>j" }, -- move to bottom window
-    ["<Leader>wk"] = { "<C-w>k" }, -- move to above window
-    ["<Leader>wl"] = { "<C-w>l" }, -- move to right window
-    ["<Leader>wv"] = { "<C-w>v" }, -- split vertical
-    ["<Leader>ws"] = { "<C-w>s" }, -- split horizontal
+    ["<Leader>wh"] = { "<C-w>h", { desc = "Go to left window" } },
+    ["<Leader>wj"] = { "<C-w>j", { desc = "Go to bottom window" } },
+    ["<Leader>wk"] = { "<C-w>k", { desc = "Go to above window" } },
+    ["<Leader>wl"] = { "<C-w>l", { desc = "Go to right window" } },
+    ["<Leader>wv"] = { "<C-w>v", { desc = "Split window vertically" } },
+    ["<Leader>ws"] = { "<C-w>s", { desc = "Split window horizontal" } },
 
     -- tab
-    ["<Leader>tn"] = { ":tabnew<CR>" }, -- create new tab
-    ["<Leader>th"] = { ":echo 'hello'<CR>" }, -- move to next tab
-    ["<Leader>tl"] = { ":tabNext<CR>" }, -- move to previows tab
+    ["<Leader>tn"] = { ":tabnew<CR>", { desc = "Create new tab" } },
+    ["<Leader>th"] = { ":echo 'hello'<CR>", { desc = "Move to next tab" } },
+    ["<Leader>tl"] = { ":tabNext<CR>", { desc = "Move to previows tab" } },
 
-    -- open terminal
-    ["<Leader>'"] = { ":terminal<CR>" },
+    -- terminal
+    ["<Leader>'"] = { ":terminal<CR>", { desc = "Open terminal" } },
   },
 
   terminal = {
