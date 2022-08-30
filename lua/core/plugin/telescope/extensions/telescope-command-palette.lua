@@ -40,5 +40,41 @@ return {
     { "spell checker", ':set spell!' },
     { "relative number", ':set relativenumber!' },
     { "search highlighting (F12)", ':set hlsearch!' },
-  }
+  },
+  {
+    "Octo(GitHub client)",
+    -- issue
+    { "List all issues", ":Octo issue list" },
+    { "Close the current issue", ":Octo issue close" },
+    { "Reopen the current issue", ":Octo issue reopen" },
+    { "Open current issue in the browser", ":Octo issue browser" },
+    { "Creates a new issue in the current repo", ":Octo issue create" },
+    { "List changed files", ":lua require('octo.picker').changed_files()" },
+    -- pr
+    { "List all PRs satisfying given filter", ":Octo pr list" },
+    { "Reopen the current PR", ":Octo pr reopen" },
+    { "Close the current PR", ":Octo pr close" },
+    { "Creates a new PR for the current branch", ":Octo pr create" },
+    { "List all PR commits", ":Octo pr commits" },
+    { "Show PR diff", ":Octo pr diff" },
+    { "Merge PR", ":Octo pr merge commit" },
+    { "Squash and merge PR", ":Octo pr merge squash" },
+    { "Add reviewer", ":lua require('octo.commands').add_user('reviewer')" },
+    { "Remove reviewer", ":lua require('octo.commands').remove_user('reviewer')" },
+    { "Add assignee", ":lua require('octo.commands').add_user('assignee')" },
+    { "Remove assignee", ":lua require('octo.commands').remove_user('assignee')" },
+    { "Open current PR in the browser", ":Octo pr browser" },
+    { "Create label", ":lua require('octo.commands').create_label()" },
+    { "Add label", ":lua require('octo.commands').add_label()" },
+    { "Remove label", ":lua require('octo.commands').remove_label()" },
+    -- repo
+    { "List repos user owns, contributes or belong to", ":Octo repo list" },
+    { "Open current repo in the browser", ":Octo repo browser" },
+    -- comment
+    { "Add a new comment", ":Octo comment add" },
+    { "Delete a comment", ":Octo comment delete" },
+    -- thread
+    { "Mark a review thread as resolved", ":Octo thread resolve" },
+    { "Mark a review thread as unresolved", ":Octo thread unresolve" },
+  },
 }

@@ -83,7 +83,7 @@ M.setup = function()
       ["]E"] = { actions.goto_next_error, opts },
       ["<C-f>"] = { actions.scroll_doc(1), opts },
       ["<C-b>"] = { actions.scroll_doc(-1), opts },
-      ["<leader>o"] = { "<cmd>LSoutlineToggle<CR>", opts },
+      ["<leader>lo"] = { "<cmd>LSoutlineToggle<CR>", opts },
       ["<Leader>ca"] = { "<cmd>Lspsaga code_action<CR>", opts },
       ["<Leader>cd"] = { "<cmd>Lspsaga show_line_diagnostics<CR>", opts },
     }

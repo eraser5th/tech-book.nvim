@@ -30,12 +30,11 @@ M.setup = function ()
       -- Now the picker_config_key will be applied every time you call this
       -- builtin picker
     },
+
+    -- 本来は
     -- extensions = require("core.plugin.telescope.extensions")
+    -- としたいのだが、telescope-command-paletteの設定がうまく行かなくなるそうなので、このようにしています。
     extensions = {
-      -- Your extension configuration goes here:
-      -- extension_name = {
-      --   extension_config_key = value,
-      -- }
       emoji = require("core.plugin.telescope.extensions.telescope-emoji"),
       command_palette = {
         {

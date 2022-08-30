@@ -1,23 +1,33 @@
 local M = {}
 
-M.setup = function()
-  local hop = require("hop")
-  local util = require("util")
+local regist_whichkey = function ()
+  if not require("util").check_module_availability("which-key") then
+    return
+  end
 
   local mappings = {
-    ["<Leader>hw"] = { ":HopWord<CR>" },
-    ["<Leader>hl"] = { ":HopLine<CR>" },
-    ["<Leader>hp"] = { ":HopPattern<CR>" },
+    h = {
+      name = "Hop",
+      w = { ":HopWord<CR>", "Hop Word" },
+      l = { ":HopLine<CR>", "Hop Line" },
+      p = { ":HopPattern<CR>", "Hop Pattern" },
+    },
   }
 
-  util.set_keymaps({ "n", "v", "x" }, mappings)
+  local opts = { prefix = "<Leader>" }
 
-  hop.setup({
+  require("which-key").register(mappings, opts)
+end
+
+M.setup = function()
+  require("hop").setup({
     keys = 'etovxqpdygfblhckisuran',
     quit_key = '<Esc>',
     jump_on_sole_occurrence = false,
     uppercase_labels = true,
   })
+
+  regist_whichkey()
 end
 
 return M

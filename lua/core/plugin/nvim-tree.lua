@@ -222,7 +222,12 @@ local setup_options = function ()
 end
 
 M.setup = function()
-  vim.keymap.set("n", "<Leader>fw", require("nvim-tree.api").tree.toggle)
+  vim.keymap.set(
+    "n",
+    "<Leader>e",
+    require("nvim-tree.api").tree.toggle,
+    { desc = "Exproler" }
+  )
   require("nvim-tree").setup(setup_options())
 end
 

@@ -1,5 +1,4 @@
 local packer = require("packer")
-local util = require("util")
 
 local M = {}
 
@@ -204,6 +203,13 @@ M.setup = function(packer_bootstrap)
       },
       config = function ()
         require("core.plugin.octo").setup()
+      end
+    })
+
+    use({
+      'numToStr/Comment.nvim',
+      config = function()
+        require('Comment').setup()
       end
     })
 
