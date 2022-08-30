@@ -68,6 +68,12 @@ M.setup = function()
       v = { "j", "k" },
     },
   })
+
+  which_key.register({
+    ["<Leader>w"] = {
+      name = "Save or Window operation prefix"
+    }
+  })
 end
 
 return M
