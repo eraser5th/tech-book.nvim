@@ -26,8 +26,8 @@ M.path_join = function(...)
 end
 
 --- Returns true if the module is safe to require, false otherwise
-  --- @param module string
-  --- @return boolean
+--- @param module string
+--- @return boolean
 M.check_module_availability = function(module)
   local is_available, _ = pcall(require, module)
   return is_available

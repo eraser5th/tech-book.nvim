@@ -6,8 +6,11 @@ M.setup = function()
   cmp.setup({
     formatting = {
       fields = { "kind", "abbr", "menu" },
-      format = function (entry, vim_item)
-        local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+      format = function(entry, vim_item)
+        local kind = require("lspkind").cmp_format({
+          mode = "symbol_text",
+          maxwidth = 50,
+        })(entry, vim_item)
         local strings = vim.split(kind.kind, "%s", { trimempty = true })
         kind.kind = " " .. strings[1] .. " "
         kind.menu = "    (" .. strings[2] .. ")"
@@ -34,30 +37,29 @@ M.setup = function()
       { name = "nvim_lsp" },
       { name = "luasnip" },
     }, {
-      { name = 'buffer' },
+      { name = "buffer" },
     }, {
       { name = "emoji" },
     }, {
-      { name = 'path' }
-    })
+      { name = "path" },
+    }),
   })
 
-  cmp.setup.cmdline('/', {
+  cmp.setup.cmdline("/", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-      { name = 'buffer' }
-    }
+      { name = "buffer" },
+    },
   })
 
-  cmp.setup.cmdline(':', {
+  cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = 'path' }
+      { name = "path" },
     }, {
-      { name = 'cmdline' }
-    })
+      { name = "cmdline" },
+    }),
   })
-
 end
 
 return M

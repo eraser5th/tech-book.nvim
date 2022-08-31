@@ -1,6 +1,6 @@
 local M = {}
 
-local setup_options = function ()
+local setup_options = function()
   return {
     auto_reload_on_write = true,
     create_in_closed_folder = false,
@@ -38,7 +38,7 @@ local setup_options = function ()
         list = {
           {
             key = { "l", "<CR>", "o", "<2-LeftMouse>" },
-            action = "edit"
+            action = "edit",
           },
           { key = "h", action = "close_node" },
           { key = "v", action = "vsplit" },
@@ -187,7 +187,14 @@ local setup_options = function ()
           enable = true,
           chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
           exclude = {
-            filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+            filetype = {
+              "notify",
+              "packer",
+              "qf",
+              "diff",
+              "fugitive",
+              "fugitiveblame",
+            },
             buftype = { "nofile", "terminal", "help" },
           },
         },

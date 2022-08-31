@@ -146,5 +146,5 @@ return {
   count = count,
   groupBy = groupBy,
   keys = keys,
-  join = join
+  join = join,
 }

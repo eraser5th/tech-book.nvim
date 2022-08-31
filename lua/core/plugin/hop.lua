@@ -1,6 +1,6 @@
 local M = {}
 
-local regist_whichkey = function ()
+local regist_whichkey = function()
   if not require("util").check_module_availability("which-key") then
     return
   end
@@ -21,8 +21,8 @@ end
 
 M.setup = function()
   require("hop").setup({
-    keys = 'etovxqpdygfblhckisuran',
-    quit_key = '<Esc>',
+    keys = "etovxqpdygfblhckisuran",
+    quit_key = "<Esc>",
     jump_on_sole_occurrence = false,
     uppercase_labels = true,
   })

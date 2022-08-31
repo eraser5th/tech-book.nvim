@@ -1,7 +1,7 @@
 local M = {}
 
 M.setup = function()
-  require('nightfox').setup({
+  require("nightfox").setup({
     options = {
       -- Compiled file's destination location
       compile_path = vim.fn.stdpath("cache") .. "/nightfox",

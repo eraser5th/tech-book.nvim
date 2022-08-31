@@ -1,6 +1,6 @@
 local M = {}
 
-M.setup = function ()
+M.setup = function()
   require("mason").setup({
     ui = {
       -- Whether to automatically check for new versions when opening the :Mason window.
@@ -10,7 +10,7 @@ M.setup = function ()
       icons = {
         package_installed = "✓",
         package_pending = "➜",
-        package_uninstalled = "✗"
+        package_uninstalled = "✗",
       },
       keymaps = {
         toggle_package_expand = "<CR>",
