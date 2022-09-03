@@ -8,6 +8,22 @@ M.setup = function()
       lua = {
         require("formatter.filetypes.lua").stylua,
       },
+      javascript = {
+        require("formatter.filetypes.javascript").eslint_d,
+        require("formatter.filetypes.javascript").prettier,
+      },
+      typescript = {
+        require("formatter.filetypes.typescript").eslint_d,
+        require("formatter.filetypes.typescript").prettier,
+      },
+      javascriptreact = {
+        require("formatter.filetypes.javascriptreact").eslint_d,
+        require("formatter.filetypes.javascriptreact").prettier,
+      },
+      typescriptreact = {
+        require("formatter.filetypes.typescriptreact").eslint_d,
+        require("formatter.filetypes.typescriptreact").prettier,
+      },
       ["*"] = {
         function()
           if vim.fn.has("macunix") == 1 then

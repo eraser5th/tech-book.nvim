@@ -11,10 +11,10 @@ end
 local init = function()
   check_neovim_version()
 
-  local packer_bootstrap = require("core.bootstrap").setup()
+  require("core.bootstrap").setup()
   require("core.keymaps").setup()
   require("core.options").setup()
-  require("core.plugin").setup(packer_bootstrap)
+  require("core.plugin").setup()
 end
 
 init()

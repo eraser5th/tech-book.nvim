@@ -8,9 +8,8 @@ local init_packer = function()
   })
 end
 
-M.setup = function(packer_bootstrap)
-  init_packer()
-  return packer.startup(function(use)
+local startup_packer = function()
+  packer.startup(function(use)
     use("wbthomason/packer.nvim")
 
     use({
@@ -212,13 +211,6 @@ M.setup = function(packer_bootstrap)
         require("core.plugin.Comment").setup()
       end,
     })
-    use({
-      "numToStr/Comment.nvim",
-      event = "BufRead",
-      config = function()
-        require("lvim.core.comment").setup()
-      end,
-    })
 
     use({
       "mhartington/formatter.nvim",
@@ -226,11 +218,24 @@ M.setup = function(packer_bootstrap)
         require("core.plugin.formatter").setup()
       end,
     })
-
-    if packer_bootstrap then
-      require("packer").sync()
-    end
   end)
+end
+
+M.setup = function()
+  init_packer()
+  startup_packer()
+
+  local compile_path = vim.fn.stdpath("config") .. "/plugin/packer_compiled.lua"
+  local packer_compiled, _ = loadfile(compile_path)
+
+  if packer_compiled then
+    packer_compiled()
+  else
+    vim.api.nvim_echo({
+      { "Please run " },
+      { ":PackerSync", "Title" },
+    }, false, {})
+  end
 end
 
 return M
