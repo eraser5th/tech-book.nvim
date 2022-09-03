@@ -18,13 +18,6 @@ M.if_expression = function(condition, then_value, else_value)
   end
 end
 
-M.path_join = function(...)
-  local is_windows = false
-  local jointer = M.if_expression(is_windows, "\\", "/")
-
-  return Table.join({ ... }, jointer)
-end
-
 --- Returns true if the module is safe to require, false otherwise
 --- @param module string
 --- @return boolean
